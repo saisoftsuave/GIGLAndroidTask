@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="MaterialDialog" parent="Theme.MaterialComponents.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.2</item>
+    </style>
+
+    <style name="Theme.MaterialGallery.DayNight" parent="Base.MaterialGallery" />
+
+    <style name="Base.MaterialGallery" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/red</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="android:statusBarColor">@color/red</item>
+    </style>
+    <style name="CircularImageViewShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>
