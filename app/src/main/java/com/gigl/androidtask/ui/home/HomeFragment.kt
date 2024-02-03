@@ -12,7 +12,6 @@ import com.gigl.androidtask.databinding.HomeFragmentBinding
 import com.gigl.androidtask.models.StoredDetails
 import com.gigl.androidtask.ui.adapter.VerticalVideoAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -63,7 +62,6 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
     private fun getResponseObserver() {
         viewModel.userDetails.observe(viewLifecycleOwner) { response ->
-            Timber.tag("response").d(response.toString())
             when (response) {
                 is ApiResponse.Success -> {
 
@@ -95,7 +93,6 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
                 is ApiResponse.Error -> {
 
                     getParentActivity().hideProgress()
-                    Timber.tag("Error").d(response.toString())
                 }
 
                 else -> {

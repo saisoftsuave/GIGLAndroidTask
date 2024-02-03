@@ -14,14 +14,14 @@ import com.gigl.androidtask.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import timber.log.Timber
+
 
 object ImageUtils {
 
     fun loadImage(
         context: Context?, imageView: ImageView?, url: String
     ) {
-        if (url.isNotEmpty() && context != null) Timber.d("checkinglide5 %s", url)
+        if (url.isNotEmpty() && context != null)
 
         context?.let {
             Glide.with(it)
