@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gigl.androidtask.R
 import com.gigl.androidtask.databinding.VideoCardViewBinding
 import com.gigl.androidtask.models.StoredDetails
-import com.gigl.androidtask.utils.ImageUtils
 
 class VerticalVideoAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

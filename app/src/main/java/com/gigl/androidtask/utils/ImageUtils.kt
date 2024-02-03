@@ -1,5 +1,3 @@
-package com.gigl.androidtask.utils
-
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
@@ -8,7 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
@@ -23,11 +21,20 @@ object ImageUtils {
     fun loadImage(
         context: Context?, imageView: ImageView?, url: String
     ) {
-        if (!url.isEmpty() && context != null) Timber.d("checkinglide5 %s", url)
+        if (url.isNotEmpty() && context != null) Timber.d("checkinglide5 %s", url)
 
         context?.let {
-            Glide.with(it).load(GlideUrlNoToken(url))
-                .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)).thumbnail(0.50f)
+            Glide.with(it)
+                .load(url)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .apply(
+                    RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL) // Cache both original and resized image
+
+                        // Placeholder while loading // Fallback image if URL is null
+                        .dontAnimate() // Disable default animations
+                )
+                .thumbnail(0.50f) // Show thumbnail while loading
                 .listener(object : RequestListener<Drawable?> {
                     override fun onLoadFailed(
                         e: GlideException?,
@@ -44,6 +51,7 @@ object ImageUtils {
                         }
                         return false
                     }
+
                     override fun onResourceReady(
                         resource: Drawable?,
                         model: Any?,
@@ -51,23 +59,10 @@ object ImageUtils {
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-
                         return false
                     }
-                }).into(imageView!!)
+                })
+                .into(imageView!!)
         }
-    }
-}
-
-class GlideUrlNoToken(url: String) : GlideUrl(url) {
-
-    private val cacheKey: String = if (url.contains("?")) {
-        url.substring(0, url.lastIndexOf("?"))
-    } else {
-        url
-    }
-
-    override fun getCacheKey(): String {
-        return cacheKey
     }
 }

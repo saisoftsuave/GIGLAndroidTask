@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gigl.androidtask.databinding.ShortCardViewBinding
 import com.gigl.androidtask.models.StoredDetails
-import com.gigl.androidtask.utils.ImageUtils
 
 
 class ShortVideoAdapter(private val data: List<StoredDetails>) :

@@ -3,8 +3,10 @@ package com.gigl.androidtask.ui.home
 import ApiResponse
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.gigl.androidtask.base.BaseFragment
 import com.gigl.androidtask.databinding.HomeFragmentBinding
 import com.gigl.androidtask.models.StoredDetails
@@ -48,15 +50,12 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.longVideoRecyclerView.layoutManager = layoutManager
-
         fullVideoAdapter = VerticalVideoAdapter()
         binding.longVideoRecyclerView.adapter = fullVideoAdapter
     }
 
 
     private fun updateUI() {
-
-
         viewModel.fetchData()
         getParentActivity().showProgress()
     }
